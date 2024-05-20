@@ -2,7 +2,7 @@ import './styles/bookPage.css';
 
 function BookPage() {
     return (
-        <section className="bookPage">
+        <section className="book-page">
             <li>
                 book Page
             </li>
