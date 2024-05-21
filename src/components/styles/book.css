@@ -11,6 +11,10 @@
     opacity: .8;
 }
 
+.book-link {
+    text-decoration: none;
+}
+
 .book-binder {
     flex: 1;
     border-right: 2px solid black;
