@@ -26,7 +26,7 @@ function App() {
       <div className="app">
       <Routes>
           <Route path="/" element={<HomePage books={books} />} />
-          <Route path="/book/:id" element={<BookPage />} />
+          <Route path="/book/:id" element={<BookPage books={books} />} />
       </Routes>
     </div>
   )
