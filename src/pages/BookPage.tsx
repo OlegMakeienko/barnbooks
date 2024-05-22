@@ -2,6 +2,8 @@ import './styles/bookPage.css';
 import { useState , useEffect } from "react";
 import { useParams } from "react-router-dom";
 import BookType from "../models/bookType.ts";
+import Book from "../components/Book.tsx";
+import BookDetails from "../components/BookDetails.tsx";
 
 type BookProps = {
     books : BookType[]
@@ -24,9 +26,11 @@ function BookPage({ books } : BookProps) {
 
     return (
         <section className="book-page">
-            <li>
-                book Page
-            </li>
+            <section className="page-wrapper book-wrapper">
+                { book && <Book large={ true } book={ book }/> }
+                { book && <BookDetails book={ book }/> }
+
+            </section>
         </section>
     );
 }

@@ -3,13 +3,14 @@ import BookType from "../models/bookType.ts";
 import { Link } from "react-router-dom";
 
 type Props = {
+    large? : boolean
     book : BookType
 }
 
-function Book({ book } : Props) {
+function Book({ large, book } : Props) {
     return (
-        <Link to={"/book/" + book.id} className="book-link">
-            <article style={{backgroundColor : book.color }} className="book">
+        <Link to={"/book/" + book.id} className={ large ? "book-link book-link-large" : "book-link" }>
+            <article style={{backgroundColor : book.color }} className={ large ? "book book-large" : "book" }>
                 <div className="book-binder"></div>
                 <div className="book-cover">
                     <h2 className="book-title">{ book.title }</h2>
