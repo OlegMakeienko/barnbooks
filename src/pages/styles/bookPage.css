@@ -1,0 +1,12 @@
+.book-page {
+    padding-top: 6rem;
+    background-color: #222222;
+    width: 100%;
+    min-height: 100vh;
+    color: white;
+}
+
+.book-wrapper {
+    display: flex;
+    gap: 4rem;
+}
