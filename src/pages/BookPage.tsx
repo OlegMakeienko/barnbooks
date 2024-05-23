@@ -7,10 +7,12 @@ import BookDetails from "../components/BookDetails.tsx";
 import { ArrowLeft } from "@phosphor-icons/react"
 
 type BookProps = {
-    books : BookType[]
+    books : BookType[],
+    watchlist : BookType[],
+    toggleBookInWatchlist : (id : number) => void
 }
 
-function BookPage({ books } : BookProps) {
+function BookPage({ books, watchlist, toggleBookInWatchlist } : BookProps) {
     const [book,setBook] = useState<BookType>();
     const { id } = useParams();
 
@@ -32,7 +34,11 @@ function BookPage({ books } : BookProps) {
             </Link>
             <section className="page-wrapper book-wrapper">
                 { book && <Book large={ true } book={ book }/> }
-                { book && <BookDetails book={ book }/> }
+                { book && <BookDetails
+                                    book={ book }
+                                    watchlist={ watchlist }
+                                    toggleBookInWatchlist={ toggleBookInWatchlist }
+                                /> }
 
             </section>
         </section>

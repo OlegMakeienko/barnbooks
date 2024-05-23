@@ -7,6 +7,7 @@ import BookType from "./models/bookType.ts";
 
 function App() {
     const [books, setBooks] = useState<BookType[]>([]);
+    const [watchlist, setWatchlist] = useState<BookType[]>([]);
 
     useEffect(
         () => {
@@ -19,14 +20,33 @@ function App() {
     );
 
     useEffect(() => {
-        console.log(books)
+        console.log(books);
     }, [books]);
+
+    const toggleBookInWatchlist = (id : number) => {
+        if(watchlist.some(book => book.id === id)) {
+            console.log("Will delete it from watchlist");
+            const filteredWatchlist = watchlist.filter(book => book.id !== id);
+            setWatchlist(filteredWatchlist);
+        } else {
+            console.log("Add it to watchlist");
+            setWatchlist(watchlist =>
+            {
+                const addedBook = books.find(book => book.id === id);
+                return addedBook ? [...watchlist, addedBook] : watchlist;
+            });
+        }
+    }
 
   return (
       <div className="app">
       <Routes>
-          <Route path="/" element={<HomePage books={books} />} />
-          <Route path="/book/:id" element={<BookPage books={books} />} />
+          <Route path="/" element={<HomePage books={ books } />} />
+          <Route path="/book/:id" element={<BookPage
+                                                books={ books }
+                                                watchlist={ watchlist }
+                                                toggleBookInWatchlist={ toggleBookInWatchlist }
+                                            /> } />
       </Routes>
     </div>
   )

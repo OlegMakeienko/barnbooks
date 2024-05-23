@@ -2,10 +2,17 @@ import "./styles/bookDetails.css"
 import BookType from "../models/bookType.ts";
 
 type BookProps = {
-    book : BookType
+    book : BookType,
+    watchlist : BookType[],
+    toggleBookInWatchlist : (id : number) => void
 }
 
-function BookDetails({ book } : BookProps) {
+function BookDetails({ book, watchlist, toggleBookInWatchlist } : BookProps) {
+
+    const isInWatchlist = (id : number) => {
+        return watchlist.some(book => book.id === id)
+    }
+
     return (
         <article className="book-details">
             <div className="book-details-header">
@@ -19,7 +26,9 @@ function BookDetails({ book } : BookProps) {
                 <p className="book-details-info"><strong>Pages: </strong>{ book.pages }</p>
                 <p className="book-details-info"><strong>Publisher: </strong>{ book.publisher }</p>
             </div>
-            <button className="book-details-btn">Oh, I want to read it!</button>
+            <button onClick={ () => toggleBookInWatchlist(book.id) } className="book-details-btn">
+                { isInWatchlist(book.id) ? "I have read it!" : "Oh, I want to read it!" }
+            </button>
         </article>
     );
 }
