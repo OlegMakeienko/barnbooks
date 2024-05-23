@@ -1,9 +1,10 @@
 import './styles/bookPage.css';
 import { useState , useEffect } from "react";
-import { useParams } from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import BookType from "../models/bookType.ts";
 import Book from "../components/Book.tsx";
 import BookDetails from "../components/BookDetails.tsx";
+import { ArrowLeft } from "@phosphor-icons/react"
 
 type BookProps = {
     books : BookType[]
@@ -26,6 +27,9 @@ function BookPage({ books } : BookProps) {
 
     return (
         <section className="book-page">
+            <Link to="/" className="home-link">
+                <ArrowLeft size={32} />
+            </Link>
             <section className="page-wrapper book-wrapper">
                 { book && <Book large={ true } book={ book }/> }
                 { book && <BookDetails book={ book }/> }
