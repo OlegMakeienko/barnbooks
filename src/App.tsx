@@ -4,6 +4,7 @@ import BookPage from "./pages/BookPage.tsx";
 import {Routes, Route} from "react-router-dom";
 import axios from "axios";
 import BookType from "./models/bookType.ts";
+import WatchlistPage from "./components/WatchlistPage.tsx";
 
 function App() {
     const [books, setBooks] = useState<BookType[]>([]);
@@ -47,6 +48,7 @@ function App() {
                                                 watchlist={ watchlist }
                                                 toggleBookInWatchlist={ toggleBookInWatchlist }
                                             /> } />
+          <Route path="/watchlist" element={<WatchlistPage watchlist={ watchlist } />} />
       </Routes>
     </div>
   )
